@@ -1,0 +1,782 @@
+@charset "UTF-8";
+@-webkit-keyframes load {
+  0% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes load {
+  0% {
+    stroke-dashoffset: 0;
+  }}
+@keyframes typing { from { width: 0; } }
+@keyframes caret { 0% { border-color: transparent;} }
+
+/*共通*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: poppins,sans-serif;
+  font-size: 16px;
+  color: #2b2b2b;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #2b2b2b;
+  text-decoration: none;
+}
+
+section {
+  text-align: center;
+}
+
+.u-content-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.u-heading {
+  position: relative;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+
+.u-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50px;
+  height: 1px;
+  background: #2b2b2b;
+  transform: translateX(-50%);
+}
+
+.u-text {
+  padding-bottom: 40px;
+  line-height: 1.8;
+  letter-spacing: 1.4px;
+}
+
+/*ヘッダー*/
+ .header {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  background:linear-gradient(rgba(253, 248, 166, 0.5), rgba(140, 193, 199, 0.8)),
+  url(img/sky.jpg);
+  background-size: cover;
+  background-blend-mode: multiply;
+  text-align: center;
+  color: #fff;
+  font-family: myriad-pro, sans-serif;
+}
+
+.header__nav {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 64px;
+}
+
+.position-change{
+position:fixed;
+top:0px;
+z-index:100;
+}
+
+.flag{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 15px;
+  opacity: 0.7;
+}
+
+.flag img{
+  width: 50px;
+  margin: 0 2px;
+}
+
+/*スクロール後のヘッダー色変え*/
+.color-change{
+  color:rgb(43,43,43);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+  background: rgb(255,255,255);
+  border-bottom: 1px solid rgb(160,160,160);
+}
+
+.color-change span, 
+.color-change span::before, 
+.color-change span::after {
+  background: #2b2b2b;
+}
+
+.header__nav__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__title {
+  padding-top: 240px;
+  font-weight: normal;
+}
+
+.header__title__sub {
+  word-spacing: 4px;
+  font-size: 20px;
+}
+
+.header__title__sub::before,
+.header__title__sub::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 2px;
+  margin: 0 8px;
+  background: #fff;
+  vertical-align: middle;
+}
+.header__nav__logo {
+  font-size: 36px;
+}
+
+#animation { 
+  margin: 0 auto;
+  width:100%;
+  font-size:120px;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(16, end), caret .3s step-end infinite;
+}
+
+.header-menu{
+  position: absolute;
+  top:64px;
+  left: 0;
+  right: 0;
+  z-index:100;
+  height: 0;
+  display:flex;
+  flex-direction: column;
+  justify-content:  flex-start;
+  overflow: hidden;
+  background: rgba(255,255,255, .9);
+  transition:all .3s;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style-type: none;
+  display: list-item;
+}
+
+/*バーガーメニューを開いたあと*/
+.height-change{
+  height:calc(100vh - 64px);
+}
+
+.header__menu__item{
+  padding: 0;
+  line-height: 11vh;
+  text-align: center;
+  font-size: 18px;
+  border-top: 1px solid #ccc;
+}
+
+
+/*バーガーメニュー*/
+.hamburger-menu {
+  position: relative;
+  width: 32px;
+  height: 64px;
+  cursor: pointer;
+}
+.active .hamburger-menu__line{
+  transform: rotate(-45deg);
+}
+
+.active .hamburger-menu__line--dummy{
+  transform: rotate(45deg);
+}
+.active .hamburger-menu__line::before{
+  top:50%;
+  opacity: 0;
+}
+
+.active .hamburger-menu__line::after{
+  top:50%;
+  opacity: 0;
+}
+.hamburger-menu__line,
+.hamburger-menu__line::before,
+.hamburger-menu__line::after ,.hamburger-menu__line--dummy{
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: #fff;
+}
+
+.hamburger-menu__line::before,
+.hamburger-menu__line::after {
+  content: "";
+}
+
+.hamburger-menu__line ,.hamburger-menu__line--dummy{
+  top: 50%;
+  transition: all .3s;
+}
+
+.hamburger-menu__line::before {
+  top: calc(50% - 8px);
+  transition: all .3s;
+}
+
+.hamburger-menu__line::after {
+  top: calc(50% + 8px);
+  transition: all .3s;
+}
+
+/*About me*/
+
+#aboutMe {
+  width: 100%;
+  padding: 80px 0;
+  background: linear-gradient(#fff 70%, #E2EBED 30%);
+  
+}
+
+.aboutMe__image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+
+/*My lived places*/
+#livedPlaces{
+  width: 100%;
+  padding-top:80px;
+  margin-bottom:80px;
+}
+
+.livedPlaces__contents{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+}
+
+.livedPlaces__contents__wrapper{
+  position: relative;
+}
+
+.livedPlaces__contents__wrapper::after {
+  position: absolute;
+    top: 45px;
+    left: -6%;
+    content: "";
+    height: 100%;
+    width: 100%;
+    z-index: -999;
+    background-color: #E2EBED;
+}
+
+.livedPlaces__content{
+  width:49%;
+  height:300px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.hoverMask{
+  opacity: 0;
+  transition: all 0.6s ease;
+  width:100%;
+  height:100%;
+  position: absolute;
+    top: 0%;
+    left: 0%;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+}
+ 
+.livedPlaces__content:hover  .hoverMask{
+  opacity: 1;
+  padding-left:30px;	/* 右にずらす */
+}
+
+
+.livedPlaces__content__image{
+  width:100%;
+  height:100%;
+  display: block;
+  opacity: 1;
+}
+
+.livedPlaces__content__image:hover{
+  opacity: 0.3;
+}
+
+.livedPlaces__content__heading{
+  font-size: 24px;
+  text-align: left;
+  position: absolute;
+  top:20px;
+  left:30px;
+}
+
+.livedPlaces__content__text  {
+  letter-spacing: 1.5px;
+  text-align: left;
+  font-size: 13px;
+  position: absolute;
+  top:210px;
+  width: calc(100% - 5% - 30px);
+}
+
+
+/*My favorite*/
+#myFavorite{
+  width:100%;
+  padding-top:80px;
+  background: linear-gradient( #fff 53%, #E2EBED 47%);
+}
+
+/*スライダー*/
+.slider{
+  height: 400px;
+  width: 100%;
+}
+
+
+.favorite__thing{
+  width:100%;
+  text-align: left;
+  line-height: 1.8;
+  font-size: 0;
+  margin:0 auto;
+  position: relative;
+}
+
+.favorite__thing__image{
+  width:100%;
+  height:400px;
+  object-fit: cover;
+  vertical-align: bottom;
+}
+
+.favorite__thing__name{
+ font-size: 40px;
+ position: absolute;
+ top:20px;
+ left:20px;
+ color: #f2f2f2;
+}
+
+.favorite__thing__detail{
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  position: absolute;
+  top: 190px;
+  left: 300px;
+  text-align: right;
+  color: #f2f2f2;
+}
+
+
+/*My works*/
+
+#myWorks {
+  width: 100%;
+  padding: 80px 0;
+  margin-bottom: 100px;
+}
+
+.works__image {
+  width: 100%;
+  height:300px;
+  object-fit: cover;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+}
+
+.works__detail{
+  font-size:14px;
+}
+
+.works__contents{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+}
+
+.works__contents__wrapper{
+  position: relative;
+}
+
+.works__contents__wrapper::after {
+  position: absolute;
+    top: 45px;
+    left: -6%;
+    content: "";
+    height: 100%;
+    width: 100%;
+    z-index: -999;
+    background-color: #E2EBED;
+}
+.works__content{
+  width: calc(50% - 15px * 2);
+  margin: 15px 10px;
+}
+
+/*contact*/
+#contact{
+  width:100%;
+  padding:170px 0;  
+  background: linear-gradient(rgba(16, 90, 167, 0.6), rgba(255, 255, 255, 0.55)),url(img/nanohana.jpeg);
+  background-size: cover;
+}
+
+.btn__contact{
+  position: relative;
+  display: inline-block;
+  width: 360px;
+  padding-left: 40px;
+  height: 80px;
+  line-height: 80px;
+  letter-spacing: 2px;
+  border:1px solid #a0a0a0a0;
+  background: #fff;
+  font-size: 20px;
+}
+
+.btn__contact::before,
+.btn__contact::after {
+  content: '';
+  position: absolute;
+  border-radius: 2px;
+}
+.btn__contact::before {
+  top: 30px;
+  left: 85px;
+  width: 30px;
+  height: 20px;
+  border: 1px solid #2b2b2b;
+}
+.btn__contact::after {
+  top: 21px;
+  left: 90px;
+  width: 20px;
+  height: 20px;
+  border-right: 1px solid #2b2b2b;
+  border-bottom: 1px solid #2b2b2b;
+  transform: rotate(45deg);
+}
+
+/*フッター*/
+.footer{
+  width:100%;
+  text-align: center;
+}
+
+.footer__copyright{
+  letter-spacing: 1.4px;
+}
+
+
+/*レスポンシブCSS*/
+@media screen and (max-width: 670px){
+
+  /*mediaクエリ内共通*/
+body{
+  font-size:14px;
+}
+
+.u-content-wrapper{
+  width: calc(100% - 32px);
+    margin: 0 auto;
+}
+.u-heading{
+  font-size:32px;
+}
+
+.u-text {
+  text-align: center;
+  padding-bottom: 32px;
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+}
+
+br {
+  display: none;
+}
+
+/*ヘッダー*/
+
+.header{
+  height:300px;
+  padding-top:0;
+  background: linear-gradient(rgba(253, 248, 166, 0.5), rgba(140, 193, 199, 0.8)),
+   url('img/thaiairline.jpg');
+  background-size: cover;
+}
+
+.header__nav{
+  position:fixed;
+  top:0;
+  z-index:100;
+}
+
+.header__nav__logo{
+  font-size:24px;
+}
+
+.header__title {
+  padding-top: 120px;
+}
+
+.header__title__sub{
+  font-size: 15px;
+}
+
+#animation { 
+  margin: 0 auto;
+  width:100%;
+  font-size:55px;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(16, end), caret .3s step-end infinite;
+}
+
+.flag img{
+  width: 10%;
+}
+
+/*About me*/
+#aboutMe{
+  padding: 40px 0;
+  background: linear-gradient(#fff 90%, #E2EBED 10%);
+}
+
+.aboutMe__image {
+  height: 200px;
+  object-fit: cover;
+}
+
+
+/*lived places*/
+#livedPlaces {
+  position: relative;
+  padding: 40px 0;
+  background: linear-gradient(#fff 90%, #E2EBED 10%);
+  margin: 0;
+}
+
+.livedPlaces__contents__wrapper::after{
+  display:none;
+}
+
+.livedPlaces__contents__wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+.livedPlaces__contents {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: auto;
+}
+
+.livedPlaces__content {
+  width: 80vw;
+  height: 330px;
+}
+
+.livedPlaces__content__image {
+  height: 200px;
+  margin-bottom: 0;
+  object-fit: cover;
+}
+
+.livedPlaces__content:not(:last-of-type) {
+  margin-right: 24px;
+  height: 290px;
+}
+
+.hoverMask{
+  width: 100%;
+  position: absolute;
+  color: #2b2b2b;
+  height: 69%;
+  display: block;
+  background: none;
+  opacity: 1;
+}
+
+.livedPlaces__content__heading{
+  font-size: 25px;
+  text-align: left;
+  position: absolute;
+  top: 205px;
+  left: 5px;
+}
+
+.livedPlaces__content__text {
+  letter-spacing: 1.5px;
+  text-align: left;
+  font-size: 13px;
+  position: absolute;
+  top: 240px;
+  left: 5px;
+  width: calc(100% - 5%);
+}
+
+/*My favorite*/
+
+#myFavorite {
+  padding: 40px 0;
+  background: linear-gradient(#fff 90%, #E2EBED 10%);
+}
+
+.favorite__things__wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+.favorite__things {
+  display: inline-flex;
+}
+
+.favorite__thing {
+  width: 80vw;
+}
+
+.favorite__thing:not(:last-of-type) {
+  margin-right: 24px;
+}
+ 
+.slider {
+  height: auto;
+  width: 100%;
+}
+
+.favorite__thing__name {
+  font-size: 30px;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  color: #fff;
+}
+
+.favorite__thing__image{
+  height:200px;
+}
+
+/*My works*/
+#myWorks {
+  position: relative;
+  padding: 40px 0;
+  background: linear-gradient(#fff 90%, #E2EBED 10%);
+  margin: 0;
+}
+
+.works__contents__wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  height: 300px;
+}
+
+.works__contents {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: auto;
+}
+
+.works__content {
+  width: 300px;
+  height: 200px;
+}
+
+.works__contents__wrapper::after{
+  display: none;
+}
+
+.works__image {
+  height: 100%;
+  width:300px;
+  margin-bottom: 0;
+  object-fit: cover;
+}
+
+.works__content:not(:last-of-type) {
+  margin-right: 24px;
+}
+
+
+.works__title{
+  font-size: 25px;
+  text-align: left;
+  position: absolute;
+  top: 205px;
+}
+
+.works__detail {
+  letter-spacing: 1.5px;
+  text-align: left;
+  font-size: 13px;
+  position: absolute;
+  top: 240px;
+  width: calc(100% - 5%);
+}
+
+/*Contact*/
+#contact{
+  padding:40px 0;
+}
+
+.btn__contact {
+  width: 180px;
+  height:50px;
+  font-size: 15px;
+  line-height: 52px;
+}
+
+.btn__contact::before{
+  left:20px;
+  top:15px;
+}
+
+.btn__contact::after{
+  left:25px;
+  top:6px;
+}
+
+.footer__copyright{
+  font-size:10px;
+}
+
+}
